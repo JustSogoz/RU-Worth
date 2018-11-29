@@ -1,6 +1,9 @@
 # RU-Worth
 Textbook Review Site - Final Project for my Relational Database & Web Applications Course:
 
+Technologies/Programming Languages: HTML, CSS, JavaScript, NodeJS, Express(NodeJS Framework),MySQL
+Templating Engine: Handlebars.js
+
 What is your motivation for building this app? Who is it for?
 
 Our web app is used for rating textbooks and identifying if a textbook is actually
