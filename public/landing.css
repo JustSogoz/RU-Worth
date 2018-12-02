@@ -9,4 +9,19 @@ nav a:hover {
 .btn.btn-secondary {
     background-color: #CD2424;
     border-color: #CD2424;
+    
+  }
+
+  /* .form-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  } */
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    /* justify-content: center; */
   }
