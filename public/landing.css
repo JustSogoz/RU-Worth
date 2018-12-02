@@ -1,0 +1,12 @@
+nav .nav-link, .navbar-brand {
+    color: white;
+}
+
+nav a:hover {
+    color: grey;
+}
+
+.btn.btn-secondary {
+    background-color: #CD2424;
+    border-color: #CD2424;
+  }

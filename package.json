@@ -11,5 +11,11 @@
     "url": "\u0016https://github.com/JustinSogoni/RU-Worth.git"
   },
   "author": "Justin Sogoni, Klaudia Chodak, Adrienne DiBari, Mariya Ghori",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.12",
+    "moment": "^2.22.2"
+  }
 }
