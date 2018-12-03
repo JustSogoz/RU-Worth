@@ -6,6 +6,9 @@ nav a:hover {
     color: grey;
 }
 
+.navbar-dark-grey {
+  background-color: rgb(94, 94, 94);
+}
 .btn.btn-secondary {
     background-color: #CD2424;
     border-color: #CD2424;
