@@ -6,6 +6,9 @@ nav a:hover {
     color: grey;
 }
 
+.navbar-dark-grey {
+  background-color: rgb(94, 94, 94);
+}
 .btn.btn-secondary {
     background-color: #CD2424;
     border-color: #CD2424;
@@ -25,3 +28,32 @@ nav a:hover {
     text-align: center;
     /* justify-content: center; */
   }
+
+body {
+  background-color: #b9b9b9 !important;
+}
+.red {
+  color: #CD2424;
+  font-size: 150%;
+  font-family: sans-serif;
+}
+.white {
+  color: rgb(94, 94, 94);
+  font-size: 150%;
+  font-family: sans-serif;
+}
+
+img {
+  border-radius: 3%;
+}
+
+.form-element {
+    margin: auto;
+    width: 15%;
+    font-family: sans-serif;
+    color: #CD2424;
+    font-size: 120%;
+}
+p {
+  font-family: sans-serif;
+}
