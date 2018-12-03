@@ -25,3 +25,32 @@ nav a:hover {
     text-align: center;
     /* justify-content: center; */
   }
+
+body {
+  background-color: #b9b9b9 !important;
+}
+.red {
+  color: #CD2424;
+  font-size: 150%;
+  font-family: sans-serif;
+}
+.white {
+  color: rgb(94, 94, 94);
+  font-size: 150%;
+  font-family: sans-serif;
+}
+
+img {
+  border-radius: 3%;
+}
+
+.form-element {
+    margin: auto;
+    width: 15%;
+    font-family: sans-serif;
+    color: #CD2424;
+    font-size: 120%;
+}
+p {
+  font-family: sans-serif;
+}
