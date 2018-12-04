@@ -8,7 +8,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light navbar-dark-grey">
-      <a class="navbar-brand" href="#"><img border="0" alt="Logo" src="logo.jpg" width="180"></a>
+      <a class="navbar-brand" href="/"><img border="0" alt="Logo" src="logo.jpg" width="180"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -16,17 +16,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="/">Link</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0 container">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search ISBN" aria-label="Search">
-          <button class="btn btn-secondary my-2 my-sm-0 active-black-4 mb-4" type="submit">Search</button>
-        </form>
-        <a href="https://google.com"><button class="btn btn-secondary my-2 my-sm-0 active-black-4 mb-4">LOG IN / SIGN UP</button></a>
+        <div class="mx-auto">
+            <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search ISBN" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0 active-black-4 mb-4" type="submit">Search</button>
+            </form>
+        </div>
+        <a href="/login"><button class="btn btn-secondary my-2 my-sm-0 active-black-4 mb-4">LOG IN </button></a>
+        <div class="nav-link">
+            <a href="/register"><button class="btn btn-secondary my-2 my-sm-0 active-black-4 mb-4"> REGISTER </button></a>
+        </div>
       </div>
     </nav>
   

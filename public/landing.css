@@ -15,6 +15,9 @@ nav a:hover {
     
   }
 
+.nav-spacing {
+  margin-left: 10%;
+}  
   /* .form-inline {
     display: flex;
     align-items: center;
@@ -22,7 +25,7 @@ nav a:hover {
     text-align: center;
   } */
 
-  .container {
+.container {
     display: flex;
     flex-wrap: wrap;
     text-align: center;

@@ -7,20 +7,14 @@ mysql = require("mysql"),
 passport = require("passport"),
 LocalStrategy = require("passport-local");
 
-// let connection = mysql.createConnection({
-//     host     : 'localhost:5000',
-//     user     : 'bob',
-//     password : 'secret'
-//   });
-   
-// connection.connect(function(err) {
-//     if (err) {
-//       console.error('error connecting: ' + err.stack);
-//       return;
-//     }
-   
-//     console.log('connected as id ' + connection.threadId);
-// });
+const db = mysql.createConnection({
+    host : 'localhost',
+    port : 5000,
+    user : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DB_NAME
+});
+
 
 const app = express();
 
@@ -31,10 +25,48 @@ app.use(log);
 app.engine("handlebars", exphbs({
     partialsDir: __dirname + "/views/partials/" // sets partials folder path
 }));
+
 app.set("view engine", "handlebars");
+
 app.get("/", function(req,res){
     res.render("landing");
-    //res.send("Hello");
+});
+
+app.get("/textbooks", function(req, res){
+    res.send("Textbook page place holder"); // we want to display the textbooks stored here
+});
+
+app.get("/textbook/new", function(req, res){
+    res.send("New Textbook Form Page");
+});
+
+app.post("/textbook", function(req, res){
+
+});
+
+app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
+    res.send("Specific Textbook ISBN");
+});
+
+app.get("/login", function(req, res){
+    res.send("Login Page");
+});
+
+app.post("/login", function(req, res){
+
+});
+
+app.get("/register", function(req, res){
+    res.send("Sign Up Page");
+});
+
+app.post("/register", function(req, res){
+
+});
+
+/* Catch-all */
+app.use(function (request, response) {
+    response.status(404).send('Nothing to see here.')
 });
 
 app.listen(5000,function(){
