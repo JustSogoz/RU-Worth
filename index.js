@@ -24,12 +24,14 @@ LocalStrategy = require("passport-local");
 
 const app = express();
 
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('public'));
 app.use(log);
-app.engine("handlebars", exphbs());
+app.engine("handlebars", exphbs({
+    partialsDir: __dirname + "/views/partials/" // sets partials folder path
+}));
 app.set("view engine", "handlebars");
-
 app.get("/", function(req,res){
     res.render("landing");
     //res.send("Hello");
