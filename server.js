@@ -57,7 +57,7 @@ app.post("/login", function(req, res){
 });
 
 app.get("/register", function(req, res){
-    res.send("Sign Up Page");
+    res.render("register");
 });
 
 app.post("/register", function(req, res){
@@ -69,6 +69,6 @@ app.use(function (request, response) {
     response.status(404).send('Nothing to see here.')
 });
 
-app.listen(5000,function(){
+app.listen(process.env.PORT || 5000,function(){
     console.log("SERVER IS RUNNING !! THNX TO ME :)");
 });
