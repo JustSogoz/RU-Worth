@@ -1,6 +1,7 @@
 a.nav-link {
   color: rgb(255, 255, 255) !important;
   margin-right: 10px;
+  font-size: 120%;
 }
 
 nav a:hover {
@@ -107,7 +108,7 @@ p {
 
   .searchbar:hover > .search_input{
   padding: 0 10px;
-  width: 300px;
+  width: 200px;
   transition: width 0.4s linear;
   }
 
@@ -125,4 +126,10 @@ p {
   align-items: center;
   border-radius: 50%;
   color:#AE292E;
+  }
+
+  hr.bold {
+    align: center;
+    width: 80%;
+    border: .5px solid #5E5E5E;
   }
