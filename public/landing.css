@@ -56,7 +56,12 @@ img {
     font-family: sans-serif;
     color: #CD2424;
     font-size: 120%;
+    
 }
 p {
   font-family: sans-serif;
+}
+
+.btn.btn-secondary {
+  text-align: center;
 }
