@@ -15,6 +15,9 @@ nav a:hover {
     
   }
 
+.nav-spacing {
+  margin-left: 10%;
+}  
   /* .form-inline {
     display: flex;
     align-items: center;
@@ -22,7 +25,7 @@ nav a:hover {
     text-align: center;
   } */
 
-  .container {
+.container {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
@@ -53,7 +56,17 @@ img {
     font-family: sans-serif;
     color: #CD2424;
     font-size: 120%;
+    
 }
 p {
   font-family: sans-serif;
 }
+
+.btn.btn-secondary {
+  text-align: center;
+}
+
+/* .mx-auto{
+  text-align: center !important;
+  width: 400px !important;
+} */
