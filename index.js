@@ -49,7 +49,7 @@ app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the co
 });
 
 app.get("/login", function(req, res){
-    res.send("Login Page");
+    res.render("login");
 });
 
 app.post("/login", function(req, res){
