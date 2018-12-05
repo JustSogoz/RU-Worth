@@ -57,7 +57,7 @@ app.post("/login", function(req, res){
 });
 
 app.get("/register", function(req, res){
-    res.send("Sign Up Page");
+    res.render("register");
 });
 
 app.post("/register", function(req, res){
