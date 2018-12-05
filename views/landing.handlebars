@@ -5,12 +5,13 @@
         <div class="col-md-12 text-center">
           <header> <h1><span class="red"> Rutgers </span> <span class="white">Textbook Rater</span></a></h1> </header>
         </div>
-    </div>
-    <hr align="center" width="80%">
+    </div><br>
+    <hr align="center" width="80%" style="border: .5px solid #5E5E5E">   
     <p class="text-center">
-      <font color="white">Search ratings for required course textbooks by entering the ISBN below!<font> 
+      <font color="black">Search ratings for required course textbooks by entering the ISBN below!<font> 
     </p>
-    <hr align="center" width="80%">             
+    <hr align="center" width="80%" style="border: .5px solid #5E5E5E">       
+    <br>      
     <div class="form-element text-center">
       <form action"/" method="GET">
         <dt> <label for="isbn">ISBN</label> </dt>
@@ -18,17 +19,11 @@
           <input autocomplete="off" id="isbn" name="isbn" placeholder="ISBN" type="text" value="">         
         </dd>
         <div>
-          <button class="btn btn-secondary" type="submit">Search</button>
+          <button class="btn btn-danger" type="submit">Search</button>
         </div>
       </form>  
     </div>
     <br>
-    <a href="https://amazon.com"><img align="left" border="0" alt="amazon" src="amazon.jpg" width="200">
-    <a href="https://www.barnesandnoble.com"/><img align="right"border="0" alt="bn" src="bn.jpg" width="200">
-    <br><br><br><br><br><br>
-    <a href="https://macys.com"><img align="left" border="0" alt="macys" src="macys.jpg" width="200">
-    <br><br>
-    <a href="https://www.stackoverflow.com"/><img align="right"border="0" alt="stack" src="stack.png" width="200">
-    <br><br>
+    
 
 {{> footer}} {{! footer.handlebars parital}}
