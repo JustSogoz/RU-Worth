@@ -64,6 +64,14 @@ app.post("/register", function(req, res){
 
 });
 
+app.get("/support", function(req, res){
+    res.render("support");
+});
+
+app.post("/support", function(req, res){
+
+});
+
 /* Catch-all */
 app.use(function (request, response) {
     response.status(404).send('Nothing to see here.')

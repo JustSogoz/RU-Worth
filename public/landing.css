@@ -56,6 +56,12 @@ body {
   font-family: sans-serif;
 }
 
+.grey {
+  color: rgb(94, 94, 94);
+  font-size: 150%;
+  font-family: sans-serif;
+}
+
 img {
   border-radius: 3%;
 }
