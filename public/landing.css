@@ -51,7 +51,7 @@ body {
   font-family: sans-serif;
 }
 .white {
-  color: rgb(94, 94, 94);
+  color: rgb(255, 255, 255);
   font-size: 150%;
   font-family: sans-serif;
 }
@@ -139,3 +139,16 @@ p {
   :focus {
     outline-color: #5E5E5E;
   } 
+/* 
+ body {
+  background-repeat: no-repeat;
+  opacity: 20%;
+ } */
+
+ body#background {
+  background: url(‘book1.jpg’) no-repeat 40% 40% fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  }
