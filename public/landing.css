@@ -146,9 +146,10 @@ p {
  } */
 
  body#background {
-  background: url(‘book1.jpg’) no-repeat 40% 40% fixed;
+  background: url(‘book.jpg’) no-repeat 40% 40% fixed;
   background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
+
   }
