@@ -5,7 +5,7 @@ a.nav-link {
 }
 
 nav a:hover {
-    color: grey;
+    color: #5E5E5E;
 }
 
 .navbar-dark-grey {
@@ -104,6 +104,7 @@ p {
   width: 0;
   line-height: 40px;
   transition: width 0.4s linear;
+  
   }
 
   .searchbar:hover > .search_input{
@@ -113,8 +114,9 @@ p {
   }
 
   .searchbar:hover > .search_icon{
-  background: #AE292E;
+  background: #5E5E5E !important;
   color: white;
+  text-decoration: none;
   }
 
   .search_icon{
@@ -133,3 +135,7 @@ p {
     width: 80%;
     border: .5px solid #5E5E5E;
   }
+
+  :focus {
+    outline-color: #5E5E5E;
+  } 
