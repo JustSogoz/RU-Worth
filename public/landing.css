@@ -159,3 +159,29 @@ p {
   -webkit-background-size: cover;
 
   }
+
+  div.help
+  {
+    padding-top: 7px;
+    width: 80%; 
+    display: table;
+    text-align: center;
+    margin: 0 auto;
+    color: black !important;
+  }
+  #img_cont {
+    display: table;
+    width: 90%;
+    margin: 20px auto;
+  }
+  
+  #img_cont a {
+    display: table-cell;
+    text-align: center;
+    width: 10%;
+  }
+  
+  #img_cont img {
+    width: 100%;
+    max-width: 150px;
+  }
