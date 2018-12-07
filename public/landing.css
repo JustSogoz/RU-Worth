@@ -45,6 +45,9 @@ nav a:hover {
 body {
   background-color: #ffffff !important;
 }
+.text-center{
+	text-align: center;
+}
 .red {
   color: #AE292E;
   font-size: 150%;

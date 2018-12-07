@@ -7,13 +7,21 @@ mysql = require("mysql"),
 passport = require("passport"),
 LocalStrategy = require("passport-local");
 
-const db = mysql.createConnection({
+const connection = mysql.createConnection({
     host : 'localhost',
     port : 5000,
     user : process.env.DB_USER,
     password : process.env.DB_PASSWORD,
     database : process.env.DB_NAME
 });
+
+connection.connect(function(err){
+    if (err) return console.log(`Error: ${err.message}`);
+    
+    console.log("Connected to MySQL Server");
+});
+
+
 
 
 const app = express();
