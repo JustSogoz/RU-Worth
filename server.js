@@ -8,11 +8,11 @@ passport = require("passport"),
 LocalStrategy = require("passport-local");
 
 const connection = mysql.createConnection({
-    host : 'localhost',
+    host : 'us-cdbr-iron-east-01.cleardb.net', // was "localhost"
     port : 5000,
-    user : process.env.DB_USER,
-    password : process.env.DB_PASSWORD,
-    database : process.env.DB_NAME
+    user : "be888e53a078fa", // was process.env.DB_USER
+    password : "1917e697", //process.env.DB_PASSWORD
+    database : "heroku_ddfc91115aa930f" // process.env.DB_NAME
 });
 
 connection.connect(function(err){
