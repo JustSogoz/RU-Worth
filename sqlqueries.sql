@@ -4,28 +4,36 @@ CREATE TABLE user (
 username VARCHAR(45) NOT NULL,
 name VARCHAR(45) NOT NULL,
 email VARCHAR(45) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY(username)
 );
 
-CREATE TABLE textbook (
-ISBN INT(10) NOT NULL,
-FOREIGN KEY courseid REFERENCES course.courseid ,
-bookname VARCHAR(150),
-PRIMARY KEY(ISBN)
-);
 
 CREATE TABLE course (
 courseid VARCHAR(10) NOT NULL,
 professor VARCHAR(50),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY(courseid)
+);
+
+CREATE TABLE textbook (
+ISBN INT(10) NOT NULL,
+courseid VARCHAR(10),
+bookname VARCHAR(150),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (courseid) REFERENCES course(courseid),
+PRIMARY KEY(ISBN)
 );
 
 CREATE TABLE reviews (
 reviewid INT AUTO_INCREMENT,
-FOREIGN KEY ISBN REFERENCES textbook.ISBN,
-FOREIGN KEY username REFERENCES user.username,
+ISBN INT(10),
+username VARCHAR(45),
 effectrating VARCHAR(150),
 recommend TINYINT(1),
 description VARCHAR(250),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (ISBN) REFERENCES textbook(ISBN),
+FOREIGN KEY (username) REFERENCES user(username),
 PRIMARY KEY(reviewid)
 );
