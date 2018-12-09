@@ -1,9 +1,10 @@
 {{> header }} 
+
 <br>
 <h2 class="text-center"><span class="red"> Sign Up </span> <span class="grey">to Rate Textbooks!</span></a></h2>
 <hr class="bold">  
 
-<div class="form-element text-left">
+<form action="/register" class="form-element text-left" method="POST">
     <dt><label for="firstname">First Name</label></dt>
     <input autocomplete="off" id="firstname" name="firstname" placeholder="First Name" type="text" value="">
 <br><br>
@@ -17,7 +18,7 @@
     <input autocomplete="off" id="password" name="password" placeholder="Password" type="password" value="">
 <br><br>
     <div class="text-center"><button class="btn btn-secondary" type="submit"> Sign Up! </button></div>
-</div>
+</form>
 <br>
 
 
