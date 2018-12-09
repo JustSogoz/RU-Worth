@@ -65,11 +65,14 @@ app.get("/register", function(req, res){
 
 app.post("/register", function(req, res){
     let person = {
-        email: req.body.email
+        email: req.body.email,
+        username : req.body.username,
+        
     };
     connection.query("INSERT INTO user SET ?", person, function(err, result){
         console.log(err);
         console.log(result);
+        connection.end();
         res.redirect("/");
     });
 });
