@@ -17,7 +17,6 @@ const connection = mysql.createConnection({
 
 connection.connect(function(err){
     if (err) return console.log(`Error: ${err.message}`);
-    
     console.log("Connected to MySQL Server");
 });
 
@@ -65,7 +64,14 @@ app.get("/register", function(req, res){
 });
 
 app.post("/register", function(req, res){
-
+    let person = {
+        email: req.body.email
+    };
+    connection.query("INSERT INTO user SET ?", person, function(err, result){
+        console.log(err);
+        console.log(result);
+        res.redirect("/");
+    });
 });
 
 app.get("/support", function(req, res){
