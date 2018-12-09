@@ -21,11 +21,7 @@ connection.connect(function(err){
     console.log("Connected to MySQL Server");
 });
 
-
-
-
 const app = express();
-
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('public'));
@@ -45,7 +41,7 @@ app.get("/textbooks", function(req, res){
 });
 
 app.get("/textbooks/new", function(req, res){
-    res.send("New Textbook Form Page");
+    res.render("newtextbook");
 });
 
 app.post("/textbooks", function(req, res){
