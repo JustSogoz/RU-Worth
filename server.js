@@ -9,7 +9,7 @@ LocalStrategy = require("passport-local");
 
 const connection = mysql.createConnection({
     host : 'us-cdbr-iron-east-01.cleardb.net', // was "localhost"
-    port : 5000, //3306
+    port : 3306,
     user : "be888e53a078fa", // was process.env.DB_USER or root
     password : "1917e697", //process.env.DB_PASSWORD
     database : "heroku_ddfc91115aa930f" // process.env.DB_NAME
@@ -36,7 +36,7 @@ app.get("/", function(req,res){
 });
 
 app.get("/textbooks", function(req, res){
-    res.send("Textbook page place holder"); // we want to display the textbooks stored here
+    res.render("textbooks"); // we want to display the textbooks stored here
 });
 
 app.get("/textbooks/new", function(req, res){
@@ -44,7 +44,7 @@ app.get("/textbooks/new", function(req, res){
 });
 
 app.post("/textbooks", function(req, res){
-
+    
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
