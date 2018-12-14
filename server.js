@@ -55,7 +55,6 @@ app.post("/textbooks", function(req, res){
     connection.query("INSERT INTO textbook SET ?", textbook, function(err, result){
         console.log(err);
         console.log(result);
-        connection.end();
         res.redirect("/textbooks");
     });
 });
@@ -105,7 +104,6 @@ app.post("/register", function(req, res){
     connection.query("INSERT INTO user SET ?", person, function(err, result){
         console.log(err);
         console.log(result);
-        connection.end();
         res.redirect("/");
     });
 });
