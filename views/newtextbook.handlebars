@@ -4,15 +4,21 @@
  <h2 class="text-center"><span class="red"> Add a  </span> <span class="grey">Textbook!</span></a></h2> 
 <hr class="bold">   
 
-<form action="/textbooks/new" class="form-element text-left" method="POST">
+<form action="/textbooks" class="form-element text-left" method="POST">
     <dt><label for="ISBN">ISBN</label></dt>
-        <input autocomplete="off" id="ISBN" name="ISBN" placeholder="ISBN" type="text"> 
+        <input autocomplete="off" id="ISBN" name="ISBN" placeholder="ISBN" type="text">
+    <dt><label for="bookName">Book Name</label></dt>
+        <input autocomplete="off" id="bookName" name="bookName" placeholder="Book Title" type="text">  
     <dt><label for="author"> Author </label></dt>
         <input autocomplete="off" id="Author" name="author" placeholder="Author" type="text">
+    <dt><label for="picture">Picture URL</label></dt>
+        <input autocomplete="off" id="picture" name="pictureUrl" placeholder="Picture URL" type="text"> 
+    <dt>
     <dt><label for="courseid"> Course ID </label></dt>
-        <input autocomplete="off" id="courseid" name="courseid" placeholder="Course ID" type="text">
-    <br><br>
+    <dd>
+        <input autocomplete="off" id="courseid" name="course_id" placeholder="Course ID" type="text">
+    </dd>
     <div> <input type="submit" class="btn btn-secondary" value="Add Textbook!"> </div>
 </form>
-
+<hr class="bold">   
 {{> footer}}

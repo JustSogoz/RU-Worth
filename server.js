@@ -44,11 +44,41 @@ app.get("/textbooks/new", function(req, res){
 });
 
 app.post("/textbooks", function(req, res){
-    
+    let textbook = {
+        ISBN : req.body.ISBN,
+        bookname: req.body.bookName,
+        author: req.body.author,
+        picture_url: req.body.pictureUrl,
+        courseid : req.body.course_id
+    };
+
+    connection.query("INSERT INTO textbook SET ?", textbook, function(err, result){
+        console.log(err);
+        console.log(result);
+        connection.end();
+        res.redirect("/textbooks");
+    });
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
+    
+    let ISBN = req.params.ISBN;
+    
+    //Need a query that finds this specific ISBN from the table 
     res.send("Specific Textbook ISBN");
+});
+
+app.get("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
+    let ISBN = req.params.ISBN;
+    
+});
+
+app.post("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
+    let ISBN = req.params.ISBN;
+    /* 
+    Run SQL query to find the textbook with the correct ISBN
+    then create a new review in that textbook
+    */
 });
 
 app.get("/login", function(req, res){
@@ -56,6 +86,10 @@ app.get("/login", function(req, res){
 });
 
 app.post("/login", function(req, res){
+    let user = {
+        username : req.body.username,
+        password : req.body.password
+    }
 
 });
 
@@ -67,7 +101,6 @@ app.post("/register", function(req, res){
     let person = {
         email: req.body.email,
         username : req.body.username,
-        
     };
     connection.query("INSERT INTO user SET ?", person, function(err, result){
         console.log(err);
@@ -79,10 +112,6 @@ app.post("/register", function(req, res){
 
 app.get("/support", function(req, res){
     res.render("support");
-});
-
-app.post("/support", function(req, res){
-
 });
 
 /* Catch-all */
