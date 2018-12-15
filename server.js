@@ -7,7 +7,8 @@ mysql = require("mysql"),
 passport = require("passport"),
 LocalStrategy = require("passport-local");
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
+    connectionLimit: 10,
     host : "us-cdbr-iron-east-01.cleardb.net", // process.env.DB_HOST
     port : 3306,
     user : "be888e53a078fa", // process.env.DB_USER
@@ -37,12 +38,18 @@ app.get("/", function(req,res){
 
 app.get("/textbooks", function(req, res){
     let sqlQuery = `SELECT * FROM textbook`
-    connection.query(sqlQuery, function(err, result){
+    pool.query(sqlQuery, function(err, result){
         if(err) console.log("SQL Error");
         console.log(result);
-        
+
+        var arrayOfArrays = [];
+        for (let i=0; i<result.length; i+=3) {
+            arrayOfArrays.push(result.slice(i,i+3));
+        }
+
+        res.render("textbooks", {queryResult : arrayOfArrays}); // we want to display the textbooks stored here
     });
-    res.render("textbooks"); // we want to display the textbooks stored here
+    
 });
 
 app.get("/textbooks/new", function(req, res){
@@ -57,7 +64,7 @@ app.post("/textbooks", function(req, res){
         pictureurl: req.body.pictureUrl
     };
 
-    connection.query("INSERT INTO textbook SET ?", textbook, function(err, result){
+    pool.query("INSERT INTO textbook SET ?", textbook, function(err, result){
         console.log(err);
         console.log(result);
         res.redirect("/textbooks");
@@ -66,10 +73,10 @@ app.post("/textbooks", function(req, res){
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
     let sqlQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`
-    let ISBN = req.params.ISBN;
-    
-    //Need a query that finds this specific ISBN from the table 
-    res.send("Specific Textbook ISBN");
+    pool.query(sqlQuery, function(err, result){
+        console.log(result)
+        res.render("textbook", {textbook : result});
+    });
 });
 
 app.get("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
@@ -106,7 +113,7 @@ app.post("/register", function(req, res){
         email: req.body.email,
         username : req.body.username
     };
-    connection.query("INSERT INTO user SET ?", person, function(err, result){
+    pool.query("INSERT INTO user SET ?", person, function(err, result){
         console.log(err);
         console.log(result);
         res.redirect("/");
