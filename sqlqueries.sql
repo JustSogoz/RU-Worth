@@ -18,12 +18,10 @@ PRIMARY KEY(courseid)
 
 CREATE TABLE textbook (
 ISBN INT(10) NOT NULL,
-author VARCHAR(50),
-courseid VARCHAR(10),
-bookname VARCHAR(150),
-pictureurl VARCHAR(1000),
+author VARCHAR(100),
+title VARCHAR(250),
+picture_url VARCHAR(1000),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY (courseid) REFERENCES course(courseid),
 PRIMARY KEY(ISBN)
 );
 

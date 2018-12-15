@@ -8,21 +8,21 @@ passport = require("passport"),
 LocalStrategy = require("passport-local");
 
 const connection = mysql.createConnection({
-    host : 'us-cdbr-iron-east-01.cleardb.net', // was "localhost"
+    host : "us-cdbr-iron-east-01.cleardb.net", // process.env.DB_HOST
     port : 3306,
-    user : "be888e53a078fa", // was process.env.DB_USER or root
-    password : "1917e697", //process.env.DB_PASSWORD
-    database : "heroku_ddfc91115aa930f" // process.env.DB_NAME
+    user : "be888e53a078fa", // process.env.DB_USER
+    password :"1917e697", //  process.env.DB_PASSWORD
+    database : "heroku_ddfc91115aa930f"//  process.env.DB_DATABASE
 });
 
-connection.connect(function(err){
-    if (err) return console.log(`Error: ${err.message}`);
-    console.log("Connected to MySQL Server");
-});
+// connection.connect(function(err){
+//     if (err) return console.log(`Error: ${err.message}`);
+//     console.log("Connected to MySQL Server");
+// });
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(log);
 app.engine("handlebars", exphbs({
@@ -36,6 +36,12 @@ app.get("/", function(req,res){
 });
 
 app.get("/textbooks", function(req, res){
+    let sqlQuery = `SELECT * FROM textbook`
+    connection.query(sqlQuery, function(err, result){
+        if(err) console.log("SQL Error");
+        console.log(result);
+        
+    });
     res.render("textbooks"); // we want to display the textbooks stored here
 });
 
@@ -46,10 +52,9 @@ app.get("/textbooks/new", function(req, res){
 app.post("/textbooks", function(req, res){
     let textbook = {
         ISBN : req.body.ISBN,
-        bookname: req.body.bookName,
+        title: req.body.title,
         author: req.body.author,
-        picture_url: req.body.pictureUrl,
-        courseid : req.body.course_id
+        pictureurl: req.body.pictureUrl
     };
 
     connection.query("INSERT INTO textbook SET ?", textbook, function(err, result){
@@ -60,7 +65,7 @@ app.post("/textbooks", function(req, res){
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
-    
+    let sqlQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`
     let ISBN = req.params.ISBN;
     
     //Need a query that finds this specific ISBN from the table 
@@ -99,7 +104,7 @@ app.get("/register", function(req, res){
 app.post("/register", function(req, res){
     let person = {
         email: req.body.email,
-        username : req.body.username,
+        username : req.body.username
     };
     connection.query("INSERT INTO user SET ?", person, function(err, result){
         console.log(err);
@@ -113,7 +118,7 @@ app.get("/support", function(req, res){
 });
 
 /* Catch-all */
-app.use(function (request, response) {
+app.use(function (req, res) {
     response.status(404).send('Nothing to see here.')
 });
 
