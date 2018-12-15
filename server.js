@@ -36,6 +36,11 @@ app.get("/", function(req,res){
     res.render("landing");
 });
 
+app.post("/search", function(req, res){ // search route
+    let ISBN = req.body.ISBN;
+    res.redirect(`textbooks/${ISBN}`);
+});
+
 app.get("/textbooks", function(req, res){
     let sqlQuery = `SELECT * FROM textbook`
     pool.query(sqlQuery, function(err, result){

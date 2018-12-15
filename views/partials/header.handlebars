@@ -32,12 +32,15 @@
   
         <div class="container justify-content-center h-1">
             <div class="d-flex flex-row justify-content-center h-1">
+              <form method="POST" action="/search">
                 <div class="searchbar p-2">
-                  <input class="search_input" type="text" name="" placeholder="Search ISBN">
-                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                  <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN">
+                  <button class="search_icon"><i class="fas fa-search"></i></button>
                 </div>
+              </form>
             </div>
         </div>
+
         <ul class="navbar-nav mr-auto justify-content-center">
           <li class="nav-item text-center">
             <a class="nav-link" href="/login">Login</a>

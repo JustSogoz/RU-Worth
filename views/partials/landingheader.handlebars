@@ -10,7 +10,7 @@
   </head>
   
   <body background="/book.jpg">
-    <nav class="navbar navbar-expand-lg navbar-light navbar-dark-grey">
+   <nav class="navbar navbar-expand-lg navbar-light navbar-dark-grey">
       <a class="navbar-brand" href="/"><img border="0" alt="Logo" src="/logo.png" width="62"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,16 +27,20 @@
           <li class="nav-item">
             <a class="nav-link" href="/textbooks/new">Add Textbook</a>
           </li>
+            
         </ul>
   
         <div class="container justify-content-center h-1">
             <div class="d-flex flex-row justify-content-center h-1">
-              <div class="searchbar p-2">
-                <input class="search_input" type="text" name="" placeholder="Search ISBN">
-                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-              </div>
+              <form method="POST" action="/search">
+                <div class="searchbar p-2">
+                  <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN">
+                  <button class="search_icon"><i class="fas fa-search"></i></button>
+                </div>
+              </form>
             </div>
         </div>
+
         <ul class="navbar-nav mr-auto justify-content-center">
           <li class="nav-item text-center">
             <a class="nav-link" href="/login">Login</a>
@@ -47,4 +51,3 @@
         </ul>
       </div>
     </nav>
-  
