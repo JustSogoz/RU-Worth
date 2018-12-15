@@ -196,13 +196,12 @@ p {
 footer {
 
   height:24px;
-  background-image: none;
-  background-repeat: repeat;
-  background-attachment: scroll;
-  background-position: 0% 0%;
-  position: fixed;
-  bottom: 0pt;
-  left: 0pt;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  bottom:0px;
+  background-color: #AE292E;
+  border-color: #AE292E;
 
 }   
 
@@ -211,10 +210,6 @@ footer {
 }
 
 .footer-contents {
-
-  height:24px; 
-  width: 100; 
-  margin:auto;
 
 }
 

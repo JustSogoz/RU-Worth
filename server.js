@@ -143,7 +143,7 @@ app.get("/support", function(req, res){
 
 /* Catch-all */
 app.use(function (req, res) {
-    response.status(404).send('Nothing to see here.')
+    res.status(404).send('Nothing to see here.')
 });
 
 app.listen(process.env.PORT || 5000,function(){
