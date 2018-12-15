@@ -72,24 +72,36 @@ app.post("/textbooks", function(req, res){
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
-    let sqlQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`
+    let sqlQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
+    let sqlQuery2 = `SELECT * FROM reviews WHERE ISBN = ${req.params.ISBN}`;
     pool.query(sqlQuery, function(err, result){
-        console.log(result)
-        res.render("textbook", {textbook : result});
+       pool.query(sqlQuery2, function(err, result2){
+            let combinedResults = [... result, ... result2]
+            console.log(combinedResults);
+            res.render("textbook", {textbook : combinedResults});
+       });
     });
 });
 
 app.get("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
     let ISBN = req.params.ISBN;
-    
+    res.render("newreview", {ISBN: ISBN});
 });
 
 app.post("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
     let ISBN = req.params.ISBN;
-    /* 
-    Run SQL query to find the textbook with the correct ISBN
-    then create a new review in that textbook
-    */
+    let review = {
+        ISBN : ISBN,
+        username : req.body.username,
+        effectrating : req.body.effectrating,
+        recommend : req.body.recommend,
+        description : req.body.description
+    };
+    pool.query("INSERT INTO user SET ?", review, function(err, result){
+        console.log(err);
+        console.log(result);
+        res.redirect("/textbooks");
+    });
 });
 
 app.get("/login", function(req, res){

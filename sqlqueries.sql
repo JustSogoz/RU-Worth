@@ -29,7 +29,7 @@ CREATE TABLE reviews (
 reviewid INT AUTO_INCREMENT,
 ISBN INT(10),
 username VARCHAR(45),
-effectrating VARCHAR(150),
+effectrating INT(2),
 recommend TINYINT(1),
 description VARCHAR(250),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

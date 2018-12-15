@@ -1,0 +1,23 @@
+
+{{> header}} {{! header.handlebars partial}}
+<br>
+
+ <h2 class="text-center"><span class="red"> Add a  </span> <span class="grey">Review!</span></a></h2> 
+<hr class="bold">   
+
+<form action="/textbooks/{{ISBN}}/new"" class="form-element text-left" method="POST">
+    <dt><label for="username">Username</label></dt>
+        <input autocomplete="off" id="username" name="username" placeholder="Username" type="text">
+    <dt><label for="effectrating">Rating</label></dt>
+        <input autocomplete="off" id="effectrating" name="effectrating" placeholder="1 - 10" type="number" min="1" max="10">  
+    <dt><label for="recommend">Recommend?</label></dt>
+        <input autocomplete="off" id="recommend" name="recommend" placeholder="0 or 1" type="number" min="0" max="1">
+    <dt><label for="description">Description</label></dt>
+        <textarea name="description" value="Description"></textarea>
+    <dt>
+    <dd>
+    </dd>
+    <div> <input type="submit" class="btn btn-secondary" value="Add Review!"> </div>
+</form>
+<hr class="bold">   
+{{> footer}}
