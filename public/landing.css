@@ -48,10 +48,10 @@ nav a:hover {
   justify-content: center;
   align-items: center;
 }
-body {
+/* body {
   background-color: #ffffff !important;
   min-height: 100%;
-}
+} */
 .text-center{
 	text-align: center;
 }
@@ -158,13 +158,10 @@ p {
   opacity: 20%;
  } */
 
- body#background {
-  background: url(‘book.jpg’) no-repeat 40% 40% fixed;
-  background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -webkit-background-size: cover;
-
+ #background {
+    background: url(‘/book.jpg’) no-repeat 40% 40% fixed ;
+    background-size: cover;
+    height: 100%;
   }
 
   div.help

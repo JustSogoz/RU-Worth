@@ -1,14 +1,18 @@
 const express = require("express"),
-exphbs = require("express-handlebars"),
-moment = require("moment"), 
-log = require("./middleware/log.js"),
-bodyParser = require('body-parser'),
-mysql = require("mysql"),
-passport = require("passport"),
-LocalStrategy = require("passport-local");
-expressSession = require("express-session");
+    exphbs = require("express-handlebars"),
+    moment = require("moment"), 
+    log = require("./middleware/log.js"),
+    bodyParser = require('body-parser'),
+    mysql = require("mysql"),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    session = require("express-session"),
+    expressValidator = require("express-validator"),
+    bcrypt = require("bcrypt"),
+    MySQLStore = require("express-mysql-session");
 
-const pool = mysql.createPool({
+const saltRounds = 10; 
+const pool = mysql.createPool({ //pool instead of connection because connection disconnects every 30 seconds
     connectionLimit: 10,
     host : "us-cdbr-iron-east-01.cleardb.net", // process.env.DB_HOST
     port : 3306,
@@ -17,34 +21,42 @@ const pool = mysql.createPool({
     database : "heroku_ddfc91115aa930f"//  process.env.DB_DATABASE
 });
 
-// connection.connect(function(err){
-//     if (err) return console.log(`Error: ${err.message}`);
-//     console.log("Connected to MySQL Server");
-// });
+let options = { //pool instead of connection because connection disconnects every 30 seconds
+    host : "us-cdbr-iron-east-01.cleardb.net", // process.env.DB_HOST
+    port : 3306,
+    user : "be888e53a078fa", // process.env.DB_USER
+    password :"1917e697", //  process.env.DB_PASSWORD
+    database : "heroku_ddfc91115aa930f"//  process.env.DB_DATABASE
+};
+
+let sessionStore = new MySQLStore(options);
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+// Logging
+app.use(log);
 
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({ username: username }, function(err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-      });
-    }
-  ));
+//Authentication 
+app.use(expressValidator()); 
+
+app.use(session({ 
+    secret: '1337 |-|/-\}{0|2',
+    resave: false, 
+    saveUninitialized: false,
+    store: sessionStore
+    //cookie : {secure: true}
+}));
 
 app.use(passport.initialize());
-app.use(passport.session());
- 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.session())
+
+app.use(function(req, res, next){ // for dynamic login, register and logout functionality
+    res.locals.isAuthenticated = req.isAuthenticated();
+    next();
+})
+
 app.use(express.static('public'));
-app.use(log);
+
 app.engine("handlebars", exphbs({
     partialsDir: __dirname + "/views/partials/" // sets partials folder path
 }));
@@ -52,11 +64,16 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 app.get("/", function(req,res){
+    console.log((!req.user) ? "No Users Logged In" : `${req.user} is Logged In`);
+    console.log(`Authentication Status: ${req.isAuthenticated()}`);
     res.render("landing");
 });
 
 app.post("/search", function(req, res){ // search route
+    
+  
     let ISBN = req.body.ISBN;
+   
     res.redirect(`textbooks/${ISBN}`);
 });
 
@@ -76,11 +93,11 @@ app.get("/textbooks", function(req, res){
     
 });
 
-app.get("/textbooks/new", function(req, res){
+app.get("/textbooks/new", authenticationMiddleware(), function(req, res){
     res.render("newtextbook");
 });
 
-app.post("/textbooks", function(req, res){
+app.post("/textbooks", authenticationMiddleware(),  function(req, res){
     let textbook = {
         ISBN : req.body.ISBN,
         title: req.body.title,
@@ -112,12 +129,12 @@ app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the co
     });
 });
 
-app.get("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
+app.get("/textbooks/:ISBN/reviews/new", authenticationMiddleware(), function (req, res){ // need to put middleware for isLoggedIn
     let ISBN = req.params.ISBN;
     res.render("newreview", {ISBN: ISBN});
 });
 
-app.post("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put middleware for isLoggedIn
+app.post("/textbooks/:ISBN/reviews/new", authenticationMiddleware(), function (req, res){ // need to put middleware for isLoggedIn
     let ISBN = req.params.ISBN;
     let review = {
         ISBN : ISBN,
@@ -137,12 +154,12 @@ app.get("/login", function(req, res){
     res.render("login");
 });
 
-app.post("/login", function(req, res){
-    let user = {
-        username : req.body.username,
-        password : req.body.password
-    }  
+app.post("/login", passport.authenticate("local", {successRedirect: "/", failureRedirect: "/login"}));
 
+app.get("/logout", function(req, res){
+    req.logout(); //logouts in passport
+    req.session.destroy(); //removes the cookie
+    res.redirect("/");
 });
 
 app.get("/register", function(req, res){
@@ -150,20 +167,70 @@ app.get("/register", function(req, res){
 });
 
 app.post("/register", function(req, res){
-    let person = {
-        email: req.body.email,
-        username : req.body.username
-    };
-    pool.query("INSERT INTO user SET ?", person, function(err, result){
-        console.log(err);
-        console.log(result);
-        res.redirect("/");
+    
+    const email = req.body.email;
+    const username = req.body.username;
+    const password = req.body.password;
+
+    bcrypt.hash(password, saltRounds, function(err, hash){
+        pool.query("INSERT INTO `user` (`username`,`email`,`password`) VALUES (?, ?, ?)", [username, email, hash] ,function(err, result){
+            if (err) console.log(err);
+            console.log(result);
+            req.login(username, function(err){
+                if(err) console.log(err);
+                res.redirect("/")
+            });
+
+        });
     });
 });
 
 app.get("/support", function(req, res){
     res.render("support");
 });
+
+//Authentication
+passport.serializeUser(function(username, done){
+
+    done(null, username);
+
+});
+
+passport.deserializeUser(function(username, done){
+    done(null, username);
+});
+
+function authenticationMiddleware() {
+    return (req, res, next) => {
+        console.log(`req.session.passport.user: 
+        ${JSON.stringify(req.session.passport)}`
+        );
+        if(req.isAuthenticated()) return next();
+        res.redirect("/login");
+    }
+}
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+      console.log(username);
+      console.log(password);
+
+      pool.query("SELECT password FROM user WHERE username = ?", [username], function(err, results){
+        if(err) {done(err)};
+        if(results.length === 0) done(null, false);
+        else{
+            console.log(results[0].password.toString());
+            const hashedPassword = results[0].password.toString();
+            bcrypt.compare(password, hashedPassword, function(err, res){  // checks if the hashed password is equal to the inputted password
+                if(res){
+                    return done(null, username);
+                }
+                return done(null, false);
+            });
+        }
+      });
+    })
+);
+//End of Authentication functions/passport, need to refactor code
 
 /* Catch-all */
 app.use(function (req, res) {

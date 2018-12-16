@@ -10,6 +10,7 @@
   </head>
   
   <body background="/book.jpg">
+  
    <nav class="navbar navbar-expand-lg navbar-light navbar-dark-grey">
       <a class="navbar-brand" href="/"><img border="0" alt="Logo" src="/logo.png" width="62"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,12 +43,20 @@
         </div>
 
         <ul class="navbar-nav mr-auto justify-content-center">
+          {{#if isAuthenticated}}
+          <li class="nav-item text-center">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {{else}}
           <li class="nav-item text-center">
             <a class="nav-link" href="/login">Login</a>
           </li>
           <li class="nav-item text-center">
               <a class="nav-link" href="/register">Register</a>
           </li>
+          {{/if}}
+
         </ul>
       </div>
     </nav>
+  
