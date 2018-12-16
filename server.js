@@ -6,6 +6,7 @@ bodyParser = require('body-parser'),
 mysql = require("mysql"),
 passport = require("passport"),
 LocalStrategy = require("passport-local");
+expressSession = require("express-session");
 
 const pool = mysql.createPool({
     connectionLimit: 10,
@@ -23,6 +24,24 @@ const pool = mysql.createPool({
 
 const app = express();
 
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function(err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+        return done(null, user);
+      });
+    }
+  ));
+
+app.use(passport.initialize());
+app.use(passport.session());
+ 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(log);
@@ -88,8 +107,11 @@ app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the co
         } else{
             let noReviewQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
             pool.query(noReviewQuery, function(err, result2){
-                console.log(result2)
-                res.render("textbookempty", {textbook : result2});
+                if(result2 > 0){
+                    res.render("textbookempty", {textbook : result2});
+                } else{
+                    res.status(404).send('Textbook not listed or Invalid ISBN.');
+                }
             });
         }
     });
@@ -124,7 +146,7 @@ app.post("/login", function(req, res){
     let user = {
         username : req.body.username,
         password : req.body.password
-    }
+    }  
 
 });
 
@@ -150,7 +172,7 @@ app.get("/support", function(req, res){
 
 /* Catch-all */
 app.use(function (req, res) {
-    res.status(404).send('Nothing to see here.')
+    res.status(404).send('Nothing to see here.');
 });
 
 app.listen(process.env.PORT || 5000,function(){

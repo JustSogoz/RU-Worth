@@ -8,11 +8,12 @@
 
     <a href="/textbooks/{{textbook.0.ISBN}}/reviews/new" class="btn btn-secondary">Add Review!</a>
     {{#each textbook}}
-
+        <h4>Date: {{created_at}}</h5>
         <h4>Username: {{username}}</h4>
         <h4>Rating: {{effectrating}}</h4>
         <h4>Recommend: {{recommend}}</h4>
         <h4>Description: {{description}}</h4>
+
         <hr class="bold">
 
     {{/each}}
