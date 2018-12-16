@@ -102,16 +102,11 @@ app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the co
 
         console.log(result)
         if(result.length > 0){
-            console.log("running query1");
             res.render("textbook", {textbook : result});
         } else{
             let noReviewQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
             pool.query(noReviewQuery, function(err, result2){
-                if(result2 > 0){
-                    res.render("textbookempty", {textbook : result2});
-                } else{
-                    res.status(404).send('Textbook not listed or Invalid ISBN.');
-                }
+                res.render("textbookempty", {textbook : result2});
             });
         }
     });
