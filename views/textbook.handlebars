@@ -1,12 +1,22 @@
 {{> header}}
 <div class="container">
-{{#each textbook}}
 
-        <h1 class="center">{{title}}</h1>
-        <img class="image-center" src="{{pictureurl}}">
-        <h3 class="center">Author: {{author}}</h3>
+    <h1 class="center">{{textbook.0.title}}</h1>
+    <img class="image-center" src="{{textbook.0.pictureurl}}">
+    <h3 class="center">Author: {{textbook.0.author}}</h3>
+    <h3 class="center">ISBN: {{textbook.0.ISBN}}</h3>
 
-{{/each}}
+    <a href="/textbooks/{{textbook.0.ISBN}}/reviews/new" class="btn btn-secondary">Add Review!</a>
+    {{#each textbook}}
+
+        <h4>Username: {{username}}</h4>
+        <h4>Rating: {{effectrating}}</h4>
+        <h4>Recommend: {{recommend}}</h4>
+        <h4>Description: {{description}}</h4>
+        <hr class="bold">
+
+    {{/each}}
+
 
 </div>
 {{> footer}}

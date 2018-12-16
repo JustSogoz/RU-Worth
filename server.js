@@ -77,14 +77,20 @@ app.post("/textbooks", function(req, res){
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
-    let sqlQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
-    let sqlQuery2 = `SELECT * FROM reviews WHERE ISBN = ${req.params.ISBN}`;
+    let sqlQuery = `SELECT * FROM textbook INNER JOIN reviews ON textbook.ISBN = reviews.ISBN
+     WHERE textbook.ISBN = ${req.params.ISBN}`;
     pool.query(sqlQuery, function(err, result){
-       pool.query(sqlQuery2, function(err, result2){
-            let combinedResults = [... result, ... result2]
-            console.log(combinedResults);
-            res.render("textbook", {textbook : combinedResults});
-       });
+
+        console.log(result)
+        if(result){
+            res.render("textbook", {textbook : result});
+        } else{
+            let noReviewQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
+            pool.query(noReviewQuery, function(err, result2){
+                console.log(result2)
+                res.render("textbook", {textbook : result2});
+            });
+        }
     });
 });
 
@@ -102,7 +108,7 @@ app.post("/textbooks/:ISBN/reviews/new", function (req, res){ // need to put mid
         recommend : req.body.recommend,
         description : req.body.description
     };
-    pool.query("INSERT INTO user SET ?", review, function(err, result){
+    pool.query("INSERT INTO reviews SET ?", review, function(err, result){
         console.log(err);
         console.log(result);
         res.redirect("/textbooks");

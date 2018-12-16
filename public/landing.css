@@ -50,6 +50,7 @@ nav a:hover {
 }
 body {
   background-color: #ffffff !important;
+  min-height: 100%;
 }
 .text-center{
 	text-align: center;
@@ -193,17 +194,16 @@ p {
   }
 
   /* Style the footer */
-footer {
-
-  height:24px;
+/* footer {
   position: relative;
-  bottom: 0;
+  height:48px;
   width: 100%;
-  bottom:0px;
   background-color: #AE292E;
   border-color: #AE292E;
+  clear: both;
+  margin-top: -48px;
 
-}   
+}    */
 
 .spacing-top {
   padding-top: 10%;
