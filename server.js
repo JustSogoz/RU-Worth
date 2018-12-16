@@ -82,13 +82,14 @@ app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the co
     pool.query(sqlQuery, function(err, result){
 
         console.log(result)
-        if(result){
+        if(result.length > 0){
+            console.log("running query1");
             res.render("textbook", {textbook : result});
         } else{
             let noReviewQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
             pool.query(noReviewQuery, function(err, result2){
                 console.log(result2)
-                res.render("textbook", {textbook : result2});
+                res.render("textbookempty", {textbook : result2});
             });
         }
     });

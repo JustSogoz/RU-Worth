@@ -1,0 +1,16 @@
+{{> header}}
+<div class="container">
+
+    <h1 class="center">{{textbook.0.title}}</h1>
+    <img class="image-center" src="{{textbook.0.pictureurl}}">
+    <h3 class="center">Author: {{textbook.0.author}}</h3>
+    <h3 class="center">ISBN: {{textbook.0.ISBN}}</h3>
+
+    <a href="/textbooks/{{textbook.0.ISBN}}/reviews/new" class="btn btn-secondary">Add Review!</a>
+
+    <h1>Currently No Reviews :(</h1>
+
+
+
+</div>
+{{> footer}}
