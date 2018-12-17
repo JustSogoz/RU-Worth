@@ -3,6 +3,7 @@
     <meta charset="utf-8"/>
     <title>RU-Worth</title>
     <link rel="stylesheet" type="text/css" href="/landing.css">
+    <link rel="icon" href="/public/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -10,52 +11,53 @@
   </head>
   
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-dark-grey">
-      <a class="navbar-brand" href="/"><img border="0" alt="Logo" src="/logo.png" width="62"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+     <div id="demo">
+      <div id="main">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-dark-grey">
+            <a class="navbar-brand" href="/"><img border="0" alt="Logo" src="/logo.png" width="62"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/textbooks">Textbooks</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/textbooks/new">Add Textbook</a>
-          </li>
-            
-        </ul>
-  
-        <div class="container justify-content-center h-1">
-            <div class="d-flex flex-row justify-content-center h-1">
-              <form method="POST" action="/search">
-                <div class="searchbar p-2">
-                  <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN">
-                  <button class="search_icon"><i class="fas fa-search"></i></button>
-                </div>
-              </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/textbooks">Textbooks</a>
+                </li>
+                {{#if isAuthenticated}}
+                <li class="nav-item">
+                  <a class="nav-link" href="/textbooks/new">Add Textbook</a>
+                </li>
+                {{/if}}
+                  
+              </ul>
+        
+              <div class="container justify-content-center h-1">
+                  <div class="d-flex flex-row justify-content-center h-1">
+                    <form method="POST" action="/search">
+                      <div class="searchbar p-2">
+                        <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN-13" pattern="[0-9]{3}-[0-9]{10}" required>
+                        <button class="search_icon"><i class="fas fa-search"></i></button>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+
+              <ul class="navbar-nav mr-auto justify-content-center">
+                {{#if isAuthenticated}}
+                <li class="nav-item text-center">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item text-center">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                {{/if}}
+
+              </ul>
             </div>
-        </div>
-
-        <ul class="navbar-nav mr-auto justify-content-center">
-          {{#if isAuthenticated}}
-          <li class="nav-item text-center">
-            <a class="nav-link" href="/logout">Logout</a>
-          </li>
-          {{else}}
-          <li class="nav-item text-center">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          <li class="nav-item text-center">
-              <a class="nav-link" href="/register">Register</a>
-          </li>
-          {{/if}}
-
-        </ul>
-      </div>
-    </nav>
+          </nav>
   

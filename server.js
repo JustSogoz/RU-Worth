@@ -103,7 +103,7 @@ app.post("/textbooks", authenticationMiddleware(),  function(req, res){
         ISBN : req.body.ISBN,
         title: req.body.title,
         author: req.body.author,
-        pictureurl: req.body.pictureUrl
+        picture_url: req.body.pictureUrl
     };
 
     pool.query("INSERT INTO textbook SET ?", textbook, function(err, result){
@@ -115,16 +115,19 @@ app.post("/textbooks", authenticationMiddleware(),  function(req, res){
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
     let sqlQuery = `SELECT *, AVG(effectrating) AS Rating, AVG(recommend) AS recommend FROM textbook INNER JOIN reviews ON textbook.ISBN = reviews.ISBN
-     WHERE textbook.ISBN = ${req.params.ISBN}`;
+     WHERE textbook.ISBN = "${req.params.ISBN}"`;
+    console.log(req.params.ISBN);
     pool.query(sqlQuery, function(err, result){
-
-        console.log(result)
+        console.log(result);
+        console.log(result.length);
         if(result.length > 0 && result[0].ISBN){
             res.render("textbook", {textbook : result});
-        } else{
+        } 
+        else{
             console.log(req.params.ISBN);
-            let noReviewQuery = `SELECT *, ISBN FROM textbook WHERE ISBN = ${req.params.ISBN}`;
+            let noReviewQuery = `SELECT * FROM textbook WHERE ISBN = "${req.params.ISBN}"`;
             pool.query(noReviewQuery, function(err, result2){
+                console.log(result2);
                 res.render("textbookempty", {textbook : result2});
             });
         }

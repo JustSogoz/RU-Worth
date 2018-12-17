@@ -23,9 +23,11 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/textbooks">Textbooks</a>
                 </li>
+                {{#if isAuthenticated}}
                 <li class="nav-item">
                   <a class="nav-link" href="/textbooks/new">Add Textbook</a>
                 </li>
+                {{/if}}
                   
               </ul>
         
@@ -33,7 +35,7 @@
                   <div class="d-flex flex-row justify-content-center h-1">
                     <form method="POST" action="/search">
                       <div class="searchbar p-2">
-                        <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN">
+                        <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN-13" pattern="[0-9]{3}-[0-9]{10}" required>
                         <button class="search_icon"><i class="fas fa-search"></i></button>
                       </div>
                     </form>
@@ -43,7 +45,7 @@
               <ul class="navbar-nav mr-auto justify-content-center">
                 {{#if isAuthenticated}}
                 <li class="nav-item text-center">
-                  <a class="nav-link">Signed In as {{username}}</a>
+                  <a class="nav-link">Welcome! {{username}}</a>
                 </li>
                 <li class="nav-item text-center">
                   <a class="nav-link" href="/logout">Logout</a>

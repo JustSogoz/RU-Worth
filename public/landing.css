@@ -199,6 +199,8 @@ p {
 }
 
 .card-img-top{
+  height: 350px;
+  width: 300px;
   object-fit: cover;
 }
 
