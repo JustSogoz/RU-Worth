@@ -1,23 +1,33 @@
 {{> header}}
- <div class="container">
+
+<br><br>
+<h2 class="text-center"><span class="red">Text</span><span class="grey">books!</span></a></h2>
+<div class="text-center"><a href="/textbooks/new" class="btn btn-secondary btn-lg">Add Textbook!</a> </div>
+<br><br>
+<hr>  
+<br><br>
+<div class="container">
 {{#each queryResult}}
         <div class="row">
             {{#each this}}
-                <div class="col-sm col-md">
+                <div class="col-sm col-md col-lg">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{pictureurl}}" alt="Card image cap">
+                        <img class="card-img-top" src="{{picture_url}}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{title}}</h5>
                             <p class="card-text">{{author}}</p>
-                            <p>ISBN: {{ISBN}}</p>
+                            <p>ISBN-13: {{ISBN}}</p>
                             <a href="/textbooks/{{ISBN}}" class="btn btn-secondary">See Reviews!</a>
                         </div>
                 </div>
                 </div>
             {{/each}}
+
         </div>
         <div class="spacing-top"></div>
 {{/each}}
 </div>
+
+
 
 {{> footer}}

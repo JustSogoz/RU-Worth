@@ -1,6 +1,5 @@
 {{> header}}
 
-
     <h1 class="center">{{textbook.0.title}}</h1>
     <img class="image-center" src="{{textbook.0.picture_url}}">
     <h3 class="center">Author: {{textbook.0.author}}</h3>
@@ -14,6 +13,9 @@
         <div class="grid">
             <aside class="sidebar-left">
                 <h5>Username: {{username}}</h5>
+                {{#if courseid}}
+                <h5>Course ID: {{courseid}}</h5>
+                {{/if}}
                 <div> <p><strong>Date:</strong> {{created_at}}</p> </div>
             </aside>
             
