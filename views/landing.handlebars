@@ -18,7 +18,7 @@
     <form method="POST" action="/search">
       <dt class="text-left"> <label for="isbn">ISBN</label> </dt>
       <dd>
-        <input autocomplete="off" id="isbn" name="ISBN" placeholder="Search ISBN-10" type="text">         
+        <input autocomplete="off" id="isbn" name="ISBN" placeholder="Search ISBN-13" type="text" pattern="[0-9]{3}-[0-9]{10}" required>         
       </dd>
       <input class="btn btn-secondary" type="submit" value="Search">
     </form>  

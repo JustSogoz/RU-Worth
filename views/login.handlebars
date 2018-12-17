@@ -2,15 +2,15 @@
 
 <br>
 
- <h2 class="text-center"><span class="red"> Log In </span> <span class="grey">to Rate Textbooks!</span></a></h2> 
+<h2 class="text-center"><span class="red"> Log In </span> <span class="grey">to Rate Textbooks!</span></a></h2> 
 <hr class="bold">   
 
 <form action="/login" class="form-element text-left" method="POST">
     <dt><label for="username">Username</label></dt>
-    <input autocomplete="off" id="username" name="username" placeholder="Username" type="text" value=""> 
+    <input autocomplete="off" id="username" name="username" placeholder="Username" type="text" value="" required> 
     <dt><label for="password"> Password </label></dt>
     <dd>
-        <input autocomplete="off" id="password" name="password" placeholder="Password" type="password" value="">
+        <input autocomplete="off" id="password" name="password" placeholder="Password" type="password" value="" required>
     </dd>
     <div> <input type="submit" class="btn btn-secondary center" value="Login"> </div>
 </form>

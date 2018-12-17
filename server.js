@@ -1,6 +1,5 @@
 const express = require("express"),
     exphbs = require("express-handlebars"),
-    moment = require("moment"), 
     log = require("./middleware/log.js"),
     bodyParser = require('body-parser'),
     mysql = require("mysql"),
@@ -9,7 +8,9 @@ const express = require("express"),
     session = require("express-session"),
     expressValidator = require("express-validator"),
     bcrypt = require("bcrypt"),
-    MySQLStore = require("express-mysql-session");
+    MySQLStore = require("express-mysql-session"),
+    favicon = require("serve-favicon"),
+    path = require("path");
 
 const saltRounds = 10; 
 const pool = mysql.createPool({ //pool instead of connection because connection disconnects every 30 seconds
@@ -35,7 +36,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // Logging
 app.use(log);
-
+app.use(favicon(__dirname+'/public'+'/favicon.ico'));
 //Authentication 
 app.use(expressValidator()); 
 
@@ -66,7 +67,7 @@ app.set("view engine", "handlebars");
 app.get("/", function(req,res){
     console.log((!req.user) ? "No Users Logged In" : `${req.user} is Logged In`);
     console.log(`Authentication Status: ${req.isAuthenticated()}`);
-    res.render("landing");
+    res.render("landing", {username: req.user});
 });
 
 app.post("/search", function(req, res){ // search route
@@ -84,7 +85,7 @@ app.get("/textbooks", function(req, res){
         console.log(result);
 
         var arrayOfArrays = [];
-        for (let i=0; i<result.length; i+=3) {
+        for (let i=0; i<result.length; i+=3) { // puts the textbooks in mini arrays of length 4
             arrayOfArrays.push(result.slice(i,i+3));
         }
 
@@ -113,15 +114,16 @@ app.post("/textbooks", authenticationMiddleware(),  function(req, res){
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
-    let sqlQuery = `SELECT * FROM textbook INNER JOIN reviews ON textbook.ISBN = reviews.ISBN
+    let sqlQuery = `SELECT *, AVG(effectrating) AS Rating, AVG(recommend) AS recommend FROM textbook INNER JOIN reviews ON textbook.ISBN = reviews.ISBN
      WHERE textbook.ISBN = ${req.params.ISBN}`;
     pool.query(sqlQuery, function(err, result){
 
         console.log(result)
-        if(result.length > 0){
+        if(result.length > 0 && result[0].ISBN){
             res.render("textbook", {textbook : result});
         } else{
-            let noReviewQuery = `SELECT * FROM textbook WHERE ISBN = ${req.params.ISBN}`;
+            console.log(req.params.ISBN);
+            let noReviewQuery = `SELECT *, ISBN FROM textbook WHERE ISBN = ${req.params.ISBN}`;
             pool.query(noReviewQuery, function(err, result2){
                 res.render("textbookempty", {textbook : result2});
             });
@@ -138,7 +140,8 @@ app.post("/textbooks/:ISBN/reviews/new", authenticationMiddleware(), function (r
     let ISBN = req.params.ISBN;
     let review = {
         ISBN : ISBN,
-        username : req.body.username,
+        username : req.user,
+        courseid : req.body.courseid,
         effectrating : req.body.effectrating,
         recommend : req.body.recommend,
         description : req.body.description

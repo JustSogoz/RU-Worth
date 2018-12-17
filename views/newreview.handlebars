@@ -3,17 +3,17 @@
 <br>
 
  <h2 class="text-center"><span class="red"> Add a  </span> <span class="grey">Review!</span></a></h2> 
-<hr class="bold">   
+ <hr class="bold">   
 
 <form action="/textbooks/{{ISBN}}/reviews/new" class="form-element text-left" method="POST">
-    <dt><label for="username">Username</label></dt>
-        <input autocomplete="off" id="username" name="username" placeholder="Username" type="text">
+    <dt><label for="courseid">Course ID</label></dt>
+        <input autocomplete="off" id="courseid" name="courseid" placeholder="XX:XXX:XXX" pattern="[0-9]{2}:[0-9]{3}:[0-9]{3}" type="text" required>
     <dt><label for="effectrating">Rating</label></dt>
-        <input autocomplete="off" id="effectrating" name="effectrating" placeholder="1 - 10" type="number" min="1" max="10">  
+        <input autocomplete="off" id="effectrating" name="effectrating" placeholder="1 - 10" type="number" min="1" max="10" required>  
     <dt><label for="recommend">Recommend?</label></dt>
-        <input autocomplete="off" id="recommend" name="recommend" placeholder="0 or 1" type="number" min="0" max="1">
+        <input autocomplete="off" id="recommend" name="recommend" placeholder="0 or 1" type="number" min="0" max="1" required>
     <dt><label for="description">Description</label></dt>
-        <textarea name="description" value="Description"></textarea>
+        <textarea name="description" value="Description" required></textarea>
     <dt>
     <dd>
     </dd>

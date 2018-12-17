@@ -1,11 +1,12 @@
+
+nav a:hover {
+    color: #5E5E5E;
+}
+
 a.nav-link {
   color: rgb(255, 255, 255) !important;
   margin-right: 10px;
   font-size: 120%;
-}
-
-nav a:hover {
-    color: #5E5E5E;
 }
 
 .navbar-dark-grey {
@@ -18,10 +19,14 @@ nav a:hover {
   }
   /* SEARCH GLASS */
 .btn.btn-third { 
-   background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   outline:0;
 }
-
+.card-img-top{
+  height: 350px;
+  object-fit: contain;
+  width: 300px; 
+}
 .btn.btn-third:focus { 
   outline:0;
 }
@@ -29,20 +34,10 @@ nav a:hover {
 .nav-spacing {
   margin-left: 10%;
 }  
-  /* .form-inline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  } */
 
-/* .container {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  /* justify-content: center; 
-} */
-
+.demo {
+  margin: 0 auto;  
+}
 .center{
   display: flex;
   justify-content: center;
@@ -84,6 +79,7 @@ img {
   font-size: 120%;
   
 }
+
 p {
   font-family: sans-serif;
   color: rgb(94, 94, 94);
@@ -144,7 +140,7 @@ p {
   }
 
   hr.bold {
-    align: center;
+    text-align: center;
     width: 80%;
     border: .5px solid #5E5E5E;
   }
@@ -152,11 +148,7 @@ p {
   :focus {
     outline-color: #5E5E5E;
   } 
-/* 
- body {
-  background-repeat: no-repeat;
-  opacity: 20%;
- } */
+
 
  #background {
     background: url(‘/book.jpg’) no-repeat 40% 40% fixed ;
@@ -191,23 +183,19 @@ p {
   }
 
   /* Style the footer */
-/* footer {
-  position: relative;
-  height:48px;
-  width: 100%;
+#footer {
+  position: absolute;
+  flex-shrink: 0;
+  text-align: center;
   background-color: #AE292E;
   border-color: #AE292E;
-  clear: both;
-  margin-top: -48px;
-
-}    */
+}   
 
 .spacing-top {
-  padding-top: 10%;
+  margin-top: 3%;
 }
-
-.footer-contents {
-
+.spacing-bottom {
+  margin-bottom:  3%;
 }
 
 .card-img-top{
@@ -225,4 +213,22 @@ p {
 textarea {
   width: 300px;
   height: 150px;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 200px auto 200px;
+  border-radius: 10px;
+}
+
+
+
+header, footer {
+  grid-column: 1 / 4;
+}
+
+ol > li {
+	font-size: 16px;
+
 }

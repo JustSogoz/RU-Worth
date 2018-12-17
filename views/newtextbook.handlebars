@@ -6,13 +6,13 @@
 
 <form action="/textbooks" class="form-element text-left" method="POST">
     <dt><label for="ISBN">ISBN</label></dt>
-        <input autocomplete="off" id="ISBN" name="ISBN" placeholder="ISBN" type="text">
+        <input autocomplete="off" id="ISBN" name="ISBN" placeholder="ISBN" type="text" pattern="[0-9]{3}-[0-9]{10}" required>
     <dt><label for="title">Title</label></dt>
-        <input autocomplete="off" id="title" name="title" placeholder="Book Title" type="text">  
+        <input autocomplete="off" id="title" name="title" placeholder="Book Title" type="text" required>  
     <dt><label for="author"> Author </label></dt>
-        <input autocomplete="off" id="Author" name="author" placeholder="Author" type="text">
+        <input autocomplete="off" id="Author" name="author" placeholder="Author" type="text" required>
     <dt><label for="picture">Picture URL</label></dt>
-        <input autocomplete="off" id="picture" name="pictureUrl" placeholder="Picture URL" type="text"> 
+        <input autocomplete="off" id="picture" name="pictureUrl" placeholder="Picture URL" type="text" required> 
     <dt>
     <dd>
     </dd>

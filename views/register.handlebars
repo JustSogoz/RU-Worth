@@ -6,12 +6,12 @@
 
 <form action="/register" class="form-element text-left" method="POST">
     <dt><label for="firstname">Username</label></dt>
-    <input autocomplete="off" id="firstname" name="username" placeholder="Username" type="text" value="">
+    <input autocomplete="off" id="firstname" name="username" placeholder="Username" type="text" value="" required>
     <dt><label for="lastname">Password</label></dt>
-    <input autocomplete="off" id="lastname" name="password" placeholder="Password" type="text" value="">
+    <input autocomplete="off" id="lastname" name="password" placeholder="Password" type="password" value="" required>
     <dt><label for="email">Email</label></dt>
     <dd>
-    <input autocomplete="off" id="email" name="email" placeholder="Email" type="text" value="">
+    <input autocomplete="off" id="email" name="email" placeholder="Email" type="email" value="" required>
     </dd>
     <div> <input type="submit" class="btn btn-secondary" value="Register"> </div>
 </form>
