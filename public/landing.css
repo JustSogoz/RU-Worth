@@ -62,9 +62,13 @@ a.nav-link {
 }
 
 .grey {
-  color: rgb(94, 94, 94);
+  color: grey;
   font-size: 150%;
   font-family: sans-serif;
+}
+
+.grey-background {
+  background-color: #5E5E5E
 }
 
 img {
@@ -101,7 +105,7 @@ img {
   left: 30px;
   }
 
-  .search_input{
+.search_input{
   color: rgb(94, 94, 94);
   border: 0;
   outline: 0;
@@ -109,22 +113,22 @@ img {
   width: 0;
   line-height: 40px;
   transition: width 0.4s linear;
-  
-  }
 
-  .searchbar:hover > .search_input{
+}
+
+.searchbar:hover > .search_input{
   padding: 0 10px;
   width: 200px;
   transition: width 0.4s linear;
-  }
+}
 
-  .searchbar:hover > .search_icon{
+.searchbar:hover > .search_icon{
   background: #5E5E5E !important;
   color: white;
   text-decoration: none;
-  }
+}
 
-  .search_icon{
+.search_icon{
   height: 40px;
   width: 40px;
   float: right;
@@ -133,50 +137,50 @@ img {
   align-items: center;
   border-radius: 50%;
   color:#AE292E;
-  }
+}
 
-  hr.bold {
-    text-align: center;
-    width: 80%;
-    border: .5px solid #5E5E5E;
-  }
+hr.bold {
+  text-align: center;
+  width: 80%;
+  border: .5px solid #5E5E5E;
+}
 
-  :focus {
-    outline-color: #5E5E5E;
-  } 
+:focus {
+  outline-color: #5E5E5E;
+} 
 
 
- #background {
-    background: url(‘/book.jpg’) no-repeat 40% 40% fixed ;
-    background-size: cover;
-    height: 100%;
-  }
+#background {
+  background: url(‘/book.jpg’) no-repeat 40% 40% fixed ;
+  background-size: cover;
+  height: 100%;
+}
 
-  div.help
-  {
-    padding-top: 7px;
-    width: 80%; 
-    display: table;
-    text-align: center;
-    margin: 0 auto;
-    color: black !important;
-  }
-  #img_cont {
-    display: table;
-    width: 90%;
-    margin: 20px auto;
-  }
-  
-  #img_cont a {
-    display: table-cell;
-    text-align: center;
-    width: 10%;
-  }
-  
-  #img_cont img {
-    width: 100%;
-    max-width: 150px;
-  }
+div.help
+{
+  padding-top: 7px;
+  width: 80%; 
+  display: table;
+  text-align: center;
+  margin: 0 auto;
+  color: black !important;
+}
+#img_cont {
+  display: table;
+  width: 90%;
+  margin: 20px auto;
+}
+
+#img_cont a {
+  display: table-cell;
+  text-align: center;
+  width: 10%;
+}
+
+#img_cont img {
+  width: 100%;
+  max-width: 150px;
+}
 
   /* Style the footer */
 #footer {
@@ -238,7 +242,7 @@ textarea {
 
 
 
-header, footer {
+header {
   grid-column: 1 / 4;
 }
 
