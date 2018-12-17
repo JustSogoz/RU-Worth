@@ -114,8 +114,7 @@ app.post("/textbooks", authenticationMiddleware(),  function(req, res){
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
-    let sqlQuery = `SELECT *, AVG(effectrating) AS Rating, AVG(recommend) AS recommend FROM textbook INNER JOIN reviews ON textbook.ISBN = reviews.ISBN
-     WHERE textbook.ISBN = "${req.params.ISBN}"`;
+    let sqlQuery = `SELECT * FROM textbook INNER JOIN reviews ON reviews.ISBN = textbook.ISBN WHERE textbook.ISBN = "${req.params.ISBN}"`;
     console.log(req.params.ISBN);
     pool.query(sqlQuery, function(err, result){
         console.log(result);
