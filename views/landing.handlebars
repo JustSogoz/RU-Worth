@@ -15,12 +15,12 @@
   <hr class="bold">       
   <br>      
   <div class="form-element text-left">
-    <form method="POST" action="/search">
+    <form method="GET" action="/search">
       <dt class="text-left"> <label for="isbn">ISBN-13</label> </dt>
       <dd>
-        <input autocomplete="off" id="isbn" name="ISBN" placeholder="XXX-XXXXXXXXXX" type="text" pattern="[0-9]{3}-[0-9]{10}" required>         
+        <input class="landing-search" autocomplete="off" id="isbn" name="ISBN" placeholder="XXX-XXXXXXXXXX" type="text" pattern="[0-9]{3}-[0-9]{10}" required>         
       </dd>
-      <input class="btn btn-secondary" type="submit" value="Search">
+      <input class="btn btn-secondary btn-md" type="submit" value="Search">
     </form>  
   </div>
   <br>

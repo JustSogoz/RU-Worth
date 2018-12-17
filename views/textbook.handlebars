@@ -7,16 +7,16 @@
 
     <div class="text-center"><a href="/textbooks/{{textbook.0.ISBN}}/reviews/new" class="btn btn-secondary btn-lg">Add Review!</a> </div>
     <br><br>
-    <hr class="bold"> 
+    <hr class="new4"> 
     {{#each textbook}}
     <div class="container-fluid">
         <div class="grid">
             <aside class="sidebar-left">
-                <h5>Username: {{username}}</h5>
+                <h5><strong>Username:</strong> {{username}}</h5>
                 {{#if courseid}}
-                <h6>Course ID: {{courseid}}</h5>
+                <h6><strong>Course ID:</strong> {{courseid}}</h6>
                 {{/if}}
-                <div> <p><strong>Date:</strong> {{created_at}}</p> </div>
+                <div> <p><Strong>Date:</Strong> {{created_at}} </p></div>
             </aside>
             
             <article>
@@ -33,8 +33,8 @@
             </aside>
              
         </div>
-        <hr class="bold"> 
     </div>
+    <hr class="new4"> 
     {{/each}}
 
-{{> footer}}
+{{> footertextbooks}}

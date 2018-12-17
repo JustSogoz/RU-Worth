@@ -70,11 +70,9 @@ app.get("/", function(req,res){
     res.render("landing", {username: req.user});
 });
 
-app.post("/search", function(req, res){ // search route
+app.get("/search", function(req, res){ // search route
     
-  
-    let ISBN = req.body.ISBN;
-   
+    let ISBN = req.query.ISBN;
     res.redirect(`textbooks/${ISBN}`);
 });
 
@@ -239,7 +237,7 @@ passport.use(new LocalStrategy(
 
 /* Catch-all */
 app.use(function (req, res) {
-    res.status(404).send('Nothing to see here.');
+    res.status(404).send('Error 404: Page not Found');
 });
 
 app.listen(process.env.PORT || 5000,function(){
