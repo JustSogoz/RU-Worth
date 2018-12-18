@@ -9,8 +9,7 @@ const express = require("express"),
     expressValidator = require("express-validator"),
     bcrypt = require("bcrypt"),
     MySQLStore = require("express-mysql-session"),
-    favicon = require("serve-favicon"),
-    path = require("path");
+    favicon = require("serve-favicon");
 
 const saltRounds = 10; 
 const pool = mysql.createPool({ //pool instead of connection because connection disconnects every 30 seconds
