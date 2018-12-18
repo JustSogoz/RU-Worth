@@ -111,7 +111,7 @@ img {
   outline: 0;
   background: none;
   width: 0;
-  line-height: 40px;
+  line-height: 60px;
   transition: width 0.4s linear;
 
 }
