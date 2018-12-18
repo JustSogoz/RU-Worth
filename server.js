@@ -17,8 +17,8 @@ const pool = mysql.createPool({ //pool instead of connection because connection 
     host : process.env.DB_HOST,  
     port : 3306,
     user : process.env.DB_USER, 
-    password :process.env.DB_PASSWORD,   
-    database : process.env.DB_DATABASE  
+    password : process.env.DB_PASSWORD,   
+    database : process.env.DB_DATABASE 
 });
 
 let options = { //pool instead of connection because connection disconnects every 30 seconds
@@ -181,7 +181,8 @@ app.post("/register", function(req, res){
     const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
-    pool.query(`SELECT username FROM user WHERE username = "${username}" OR email = ${email}`, function (err, result){ //checks to make sure the username isn't taken
+    pool.query(`SELECT username FROM user WHERE username = "${username}" OR email = "${email}"`, function (err, result){ //checks to make sure the username isn't taken and email
+        console.log(result);
         if(result.length > 0){
             res.redirect("/register"); 
         } else{
