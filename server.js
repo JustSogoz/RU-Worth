@@ -35,7 +35,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // Logging
 app.use(log);
-app.use(favicon(__dirname+'/public'+'/favicon.ico'));
+app.use(favicon(`${__dirname}/public/favicon.ico`));
+
 //Authentication 
 app.use(expressValidator()); 
 
@@ -58,12 +59,13 @@ app.use(function(req, res, next){ // for dynamic login, register and logout func
 app.use(express.static('public'));
 
 app.engine("handlebars", exphbs({
-    partialsDir: __dirname + "/views/partials/" // sets partials folder path
+    partialsDir: `${__dirname}/views/partials/` // sets partials folder path
 }));
 
 app.set("view engine", "handlebars");
 
 app.get("/", function(req,res){
+
     console.log((!req.user) ? "No Users Logged In" : `${req.user} is Logged In`);
     console.log(`Authentication Status: ${req.isAuthenticated()}`);
     res.render("landing", {username: req.user});
