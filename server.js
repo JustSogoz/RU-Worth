@@ -14,19 +14,19 @@ const express = require("express"),
 const saltRounds = 10; 
 const pool = mysql.createPool({ //pool instead of connection because connection disconnects every 30 seconds
     connectionLimit: 10,
-    host : "us-cdbr-iron-east-01.cleardb.net",  
+    host : process.env.DB_HOST,  
     port : 3306,
-    user : "be888e53a078fa", 
-    password : "1917e697",   
-    database : "heroku_ddfc91115aa930f"  
+    user : process.env.DB_USER, 
+    password : process.env.DB_PASSWORD,   
+    database : process.env.DB_DATABASE    
 });
 
 let options = { //pool instead of connection because connection disconnects every 30 seconds
-    host : "us-cdbr-iron-east-01.cleardb.net",
+    host : process.env.DB_HOST,
     port : 3306,
-    user : "be888e53a078fa", 
-    password : "1917e697", 
-    database : "heroku_ddfc91115aa930f" 
+    user : process.env.DB_USER, 
+    password : process.env.DB_PASSWORD, 
+    database : process.env.DB_DATABASE  
 };
 
 let sessionStore = new MySQLStore(options);
