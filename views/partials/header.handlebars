@@ -34,36 +34,32 @@
               
               <div class="container justify-content-center h-1"></div>
 
-                <ul class="navbar-nav mr-auto justify-content-center">
-                  <li class="nav-item">
-                    
-                    <div class="d-flex flex-row justify-content-center h-1">
-                      <form method="GET" action="/search">
-                        <div class="searchbar p-2">
-                          <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN-13" pattern="[0-9]{3}-[0-9]{10}" required>
-                          <button class="search_icon"><i class="fas fa-search"></i></button>
-                        </div>
-                      </form>
+                <div class="nav-link d-flex flex-row justify-content-center">
+                  <form method="GET" action="/search">
+                    <div class="searchbar p-2">
+                      <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN-13" pattern="[0-9]{3}-[0-9]{10}" required>
+                      <button class="search_icon"><i class="fas fa-search"></i></button>
                     </div>
+                  </form>
+                </div>
+                <ul class="navbar-nav mr-auto justify-content-center">
+                  {{#if isAuthenticated}}
+                  <li class="nav-item text-center">
+                    <a class="nav-link">Welcome! {{username}}</a>
                   </li>
-                {{#if isAuthenticated}}
-                <li class="nav-item text-center">
-                  <a class="nav-link">Welcome! {{username}}</a>
-                </li>
-                <li class="nav-item text-center">
-                  <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                {{else}}
-                <li class="nav-item text-center">
-                  <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item text-center">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                {{/if}}
+                  <li class="nav-item text-center">
+                    <a class="nav-link" href="/logout">Logout</a>
+                  </li>
+                  {{else}}
+                  <li class="nav-item text-center">
+                    <a class="nav-link" href="/login">Login</a>
+                  </li>
+                  <li class="nav-item text-center">
+                      <a class="nav-link" href="/register">Register</a>
+                  </li>
+                  {{/if}}
 
               </ul>
               </div>
             </div>
           </nav>
-  

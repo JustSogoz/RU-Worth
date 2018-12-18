@@ -1,10 +1,10 @@
 {{> header}}
 
 <br><br>
-<h2 class="text-center"><span class="red">Text</span><span class="grey">books!</span></a></h2>
+<h2 class="text-center"><span class="red">Rutgers</span> <span class="grey">Textbooks!</span></a></h2>
 <div class="text-center"><a href="/textbooks/new" class="btn btn-secondary btn-lg">Add Textbook!</a> </div>
 <br><br>
-<hr>  
+<hr class="new4">  
 <br><br>
 <div class="container">
 {{#each queryResult}}
@@ -14,8 +14,8 @@
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="{{picture_url}}" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">{{title}}</h5>
-                            <p class="card-text">{{author}}</p>
+                            <h6 class="card-title">{{title}}</h5>
+                            <div class="card-text">{{author}}</div>
                             <p>ISBN-13: {{ISBN}}</p>
                             <a href="/textbooks/{{ISBN}}" class="btn btn-secondary">See Reviews!</a>
                         </div>

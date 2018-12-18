@@ -61,6 +61,9 @@ a.nav-link {
   font-family: sans-serif;
 }
 
+.light-grey{
+  color: lightgrey;
+}
 .grey {
   color: grey;
   font-size: 150%;
@@ -88,7 +91,7 @@ img {
 
 .mx-auto{
   text-align: center !important;
-  width: 400px !important;
+  width: 300px !important;
 }
 
 /* hr {
@@ -101,8 +104,8 @@ img {
   height: 60px;
   background-color: white;
   border-radius: 30px;
-  padding: 10px;
-  left: 30px;
+  padding: 5px;
+  right: 30px;
   }
 
 .search_input{
@@ -111,14 +114,13 @@ img {
   outline: 0;
   background: none;
   width: 0;
-  line-height: 60px;
   transition: width 0.4s linear;
 
 }
 
 .searchbar:hover > .search_input{
   padding: 0 10px;
-  width: 200px;
+  width: 300px;
   transition: width 0.4s linear;
 }
 
@@ -189,20 +191,12 @@ div.help
   width: 100%;
   bottom: 0;
   left: 0;
-  height: 5%;
+  height: 7%;
   text-align: center;
-  background-color: #AE292E;
-  border-color: #AE292E;
+  background-color: grey;
+  border-color: grey;
 }   
 
-#footer2 {
-  position: relative;
-  width: 100%;
-  height: 5%;
-  text-align: center;
-  background-color: #AE292E;
-  border-color: #AE292E;
-}   
 
 .spacing-top {
   margin-top: 3%;
@@ -252,6 +246,6 @@ ol > li {
 }
 
 .landing-search{
-    width: 500px;
-    height: 50px;
+    width: 200px;
+    height: 35px;
 }
