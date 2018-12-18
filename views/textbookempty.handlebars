@@ -5,7 +5,7 @@
     <img class="image-center" src="{{textbook.0.picture_url}}">
     <h3 class="center">{{#if textbook.0.author}}Author: {{textbook.0.author}} {{/if}}</h3>
     <h3 class="center">{{#if textbook.0.ISBN}}ISBN-13: {{textbook.0.ISBN}} {{/if}}</h3>
-    <h5 class="center">{{#if textbook.0.ISBN}}<a href="https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords={{textbook.0.ISBN}}">Amazon: Get Textbook! </a> {{/if}}</h5>
+    <h5 class="center">{{#if textbook.0.ISBN}}<a href="https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords={{textbook.0.ISBN}}">Get Textbook!</a> {{/if}}</h5>
 
     {{#if textbook.0.ISBN}}
     <div class="text-center"><a href="/textbooks/{{textbook.0.ISBN}}/reviews/new" class="btn btn-secondary btn-lg">Add Review!</a> </div> 
