@@ -154,9 +154,9 @@ app.post("/textbooks/:ISBN/reviews/new", authenticationMiddleware(), function (r
         description : req.body.description
     };
     pool.query("INSERT INTO reviews SET ?", review, function(err, result){
-        console.log(err);
+        if(err) console.log(err);
         console.log(result);
-        res.redirect("/textbooks");
+        res.redirect(`/textbooks/${ISBN}`);
     });
 });
 
