@@ -35,11 +35,8 @@
               <div class="container justify-content-center h-1"></div>
 
                 <div class="nav-link d-flex flex-row justify-content-center">
-                  <form method="GET" action="/search">
-                    <div class="searchbar p-2">
-                      <input class="search_input" type="text" name="ISBN" placeholder="Search ISBN-13" pattern="[0-9]{3}-[0-9]{10}" required>
-                      <button class="search_icon"><i class="fas fa-search"></i></button>
-                    </div>
+                  <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search ISBN-13" aria-label="Search" pattern="[0-9]{3}-[0-9]{10}" required>
                   </form>
                 </div>
                 <ul class="navbar-nav mr-auto justify-content-center">
