@@ -121,6 +121,7 @@ img {
 .searchbar:hover > .search_input{
   padding: 0 10px;
   width: 300px;
+  line-height: 60px;
   transition: width 0.4s linear;
 }
 
@@ -191,16 +192,16 @@ div.help
   width: 100%;
   bottom: 0;
   left: 0;
-  height: 7%;
+  height: 50px;
   text-align: center;
   background-color: grey;
   border-color: grey;
 }   
-
-
+ 
 .spacing-top {
   margin-top: 3%;
 }
+
 .spacing-bottom {
   margin-bottom:  3%;
 }
