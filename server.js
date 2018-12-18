@@ -102,12 +102,18 @@ app.post("/textbooks", authenticationMiddleware(),  function(req, res){
         author: req.body.author,
         picture_url: req.body.pictureUrl
     };
-
-    pool.query("INSERT INTO textbook SET ?", textbook, function(err, result){
-        console.log(err);
-        console.log(result);
-        res.redirect("/textbooks");
+    let ISBN = req.body.ISBN;
+    pool.query(`SELECT ISBN FROM textbook WHERE ISBN = "${ISBN}"`, function(err, result){
+        if(result.length > 0) (res.redirect("/textbooks/new"));
+        else{
+            pool.query("INSERT INTO textbook SET ?", textbook, function(err, result){
+                console.log(err);
+                console.log(result);
+                res.redirect("/textbooks");
+            });
+        }
     });
+    
 });
 
 app.get("/textbooks/:ISBN", function(req,res){ // shows the textbook with the corresponding ISBN
@@ -173,17 +179,22 @@ app.post("/register", function(req, res){
     const email = req.body.email;
     const username = req.body.username;
     const password = req.body.password;
-
-    bcrypt.hash(password, saltRounds, function(err, hash){
-        pool.query("INSERT INTO `user` (`username`,`email`,`password`) VALUES (?, ?, ?)", [username, email, hash] ,function(err, result){
-            if (err) console.log(err);
-            console.log(result);
-            req.login(username, function(err){
-                if(err) console.log(err);
-                res.redirect("/")
+    pool.query(`SELECT username FROM user WHERE username = "${username}"`, function (err, result){ //checks to make sure the username isn't taken
+        if(result.length > 0){
+            res.redirect("/register"); 
+        } else{
+            bcrypt.hash(password, saltRounds, function(err, hash){
+                pool.query("INSERT INTO `user` (`username`,`email`,`password`) VALUES (?, ?, ?)", [username, email, hash], function(err, result){
+                    if (err) console.log(err);
+                    console.log(result);
+                    req.login(username, function(err){
+                        if(err) console.log(err);
+                        res.redirect("/")
+                    });
+        
+                });
             });
-
-        });
+        }
     });
 });
 
