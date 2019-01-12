@@ -14,6 +14,6 @@ circumstances where the textbook is rarely used and referenced to learn the mate
 Most of the time, courses have PowerPoint slides and/or PDFs that give the student all
 the material necessary to perform well. This means that many Rutgers students who
 have bought textbooks potentially wasted hundreds to thousands of dollars
-throughout their college years. The reviews given by our web app could help students
+throughout their college years. The reviews and recommendations given by our web app could help students
 avoid paying for textbooks that they will not use and provide feedback on the usefulness
 of the textbook for their courses.
