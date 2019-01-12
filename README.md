@@ -5,7 +5,7 @@ Technologies/Programming Languages: HTML, CSS, JavaScript, NodeJS, Express(NodeJ
 
 Templating Engine: Handlebars.js
 
-What is your motivation for building this app? Who is it for?
+# What is your motivation for building this app? Who is it for?
 
 Our web app is used for rating textbooks and identifying if a textbook is actually
 necessary to purchase for a given course. Often times, professors have a list of
