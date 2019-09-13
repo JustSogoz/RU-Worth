@@ -1,5 +1,5 @@
 # RU-Worth
-Textbook Recommendation Site - Final Project for my Relational Database & Web Applications Course:
+Textbook Review Site - Final Project for my Relational Database & Web Applications Course:
 
 Technologies/Programming Languages: HTML, CSS, JavaScript, NodeJS, Express(NodeJS Framework),MySQL
 
